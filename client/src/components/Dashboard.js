@@ -1,17 +1,24 @@
 import React, {useState} from "react";
 import Display from "./Display";
 
-const addBall = currentBall => {
-    return currentBall + 1;
-};
+//version 1 --> WET code
+// const addBall = currentBall => {
+//     return currentBall + 1;
+// };
 
-const addStrike = currentStrike => {
-    return currentStrike + 1;
-};
+// const addStrike = currentStrike => {
+//     return currentStrike + 1;
+// };
 
-const addHit = currentHit => {
-    return currentHit + 1;
-}
+// const addHit = currentHit => {
+//     return currentHit + 1;
+// }
+
+//DRY code below
+export const addValue = currentValue => {
+    return currentValue + 1;
+  };
+  
 
 const Dashboard = () => {
     //set state for buttons
@@ -23,28 +30,28 @@ const Dashboard = () => {
     //functions to add to set state
     //give it current data and how to set it 
     function newBall() {
-        setBall(addBall(ball));
+        setBall(addValue(ball));
         if (ball === 4) {
             return setBall(0), setStrike(0);
         } 
     };
 
     function newStrike() {
-        setStrike(addStrike(strike));
+        setStrike(addValue(strike));
         if (strike === 3) {
             return setBall(0), setStrike(0);
         } 
     };
 
     function newFoul() {
-        setStrike(addStrike(strike));
+        setStrike(addValue(strike));
         if (strike === 2) {
             return setStrike(2);
         } 
     };
 
     function newHit() {
-        setHit(addHit(hit));
+        setHit(addValue(hit));
         return setBall(0), setStrike(0);
     }
 
